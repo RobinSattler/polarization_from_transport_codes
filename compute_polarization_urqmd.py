@@ -25,7 +25,7 @@ pt_min=0.1
 pt_max=6.
 
 #limits for |rapidity|
-rap_lim=0.5
+rap_lim=1.0
 
 #we set the parameter hbarc
 hbarc=0.197326
@@ -173,13 +173,19 @@ while(True):
                     #we compute S in the particle LRF frame
                     bof=(px*Sx+py*Sy+pz*Sz)/(Ep*(m+Ep))
                     Sx_lrf=Sx-bof*px
+                    if abs(Sx_lrf)>0.5:
+                        continue
                     Sy_lrf=Sy-bof*py
+                    if abs(Sy_lrf)>0.5:
+                        continue
                     Sz_lrf=Sz-bof*pz
+                    if abs(Sz_lrf)>0.5:
+                        continue
 
                     datas[el][ds,0:4]=np.float64(stuff[1:5])#we copy the coordinates t,x,y,z
                     datas[el][ds,4:6]=pt,rapidity
                     datas[el][ds,6:9]=Sx_lrf,Sy_lrf,Sz_lrf
-                    datas[el][ds,9]=-2*Sy_lrf
+                    #datas[el][ds,9]=-2*Sy_lrf # y polarization, normalized by -1/2
                     # attempt to implement the additional boost by Florkowski and others, not really useful
                     #vLx=px/Ep
                     #vLy=py/Ep
@@ -202,7 +208,7 @@ while(True):
         for a in range(0,ind[i]):
             #print(str(a))
             fon[i].write(ff.format(datas[i][a,0])+sp+ff.format(datas[i][a,1])+sp+ff.format(datas[i][a,2])+sp+ff.format(datas[i][a,3])+sp+ff.format(datas[i][a,4])+sp+ff.format(datas[i][a,5]))
-            for q in range(6,10):
+            for q in range(6,9):
                 fon[i].write(sp+ff.format(datas[i][a,q]))
             fon[i].write("\n")
 
