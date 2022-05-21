@@ -5,7 +5,7 @@ import os
 import gzip
 
 # hadron ids
-hadron_ids=("27","40")
+hadron_ids=(27,40)
 hadron_names=("Lambda","Sigma")
 
 # time resolution
@@ -13,14 +13,14 @@ dt=0.5
 
 
 # x,z resolution
-dx=0.5
-dz=0.5
+dx=1
+dz=1
 
 # histograms go from -xside to xside
 xside=20
 zside=20
 
-raplim=1
+raplim=100
 ptmin=0.1
 ptmax=3.
 
@@ -64,10 +64,12 @@ N_hadrons=np.zeros(nhad,dtype=np.int64)
 
 if(inputfile[-3:]==".gz"):
   print("Opening gzipped file "+inputfile)
-  pi=gzip.open(inputfile,"r")
+  pi=gzip.open(inputfile,"rb")
+  gzip_data=True
 else:
   print("Opening file "+inputfile)
   pi=open(inputfile,"r")
+  gzip_data=False
 
 lines=0
 events=0
@@ -75,10 +77,17 @@ events=0
 for line in pi:
     stuff=line.split() 
     lines=lines+1
+    if gzip_data:
+        entry = stuff[0].decode('utf-8')
+    else:
+        entry = stuff[0]
+    if entry == "event":
+        events+=1
+        continue
+    else:
+        pid = int(entry)
     #if(not(stuff[0]==b"27") or (stuff[0]==b"40")): (old format)
-    if(not(stuff[0] in hadron_ids)): 
-        if stuff[0] == "event":
-            events+=1
+    if(not(pid in hadron_ids)): 
         continue
     t,x,y,z,En,px,py,pz=np.float64(stuff[1:]) #here px, py and pz is the average spin, not the momentum
     if(t < tmax):
@@ -89,7 +98,7 @@ for line in pi:
          #if(stuff[0]==b"27"): (old format)
          i=int(math.floor((x+xside)/dx))
          k=int(math.floor((z+zside)/dz))
-         indx_had=hadron_ids.index(stuff[0])
+         indx_had=hadron_ids.index(pid)
          N_hadrons[indx_had]+=1
          dN[indx_had,h]=dN[indx_had,h]+1
          if((i>=0) and (i<nx) and (k>=0) and (k<nz)):
@@ -103,7 +112,7 @@ for i in range(nhad):
         dN_Ndt[i,:]=dN[i,:]/(N_hadrons[i]*dt)
     for h in range(nt):
         if hadrons_in_xz[i,h] > 0:
-            dN_Ndxdz[indx_had,h,i,k]=dN_dxdz[indx_had,h,i,k]/hadrons_in_xz[i,h]
+            dN_Ndxdz[i,h,:,:]=dN_dxdz[i,h,:,:]/(hadrons_in_xz[i,h]*dx*dz)
 
 #now we print the results into a file
 sp="          "
@@ -116,17 +125,17 @@ for q in range(nhad):
     fout.write("# N events = "+str(events)+"\n")
     fout.write("# t      dN/(N_"+hadname+" dt)      dN/(N_events dt)\n")
     for h in range(nt):
-        fout.write(cf.format((h+0.5)*dt)+sp+df.format(dN_Ndt[0,h])+sp+df.format(dN[0,h]/(dt*events))+"\n")
+        fout.write(cf.format(h*dt+0.5)+sp+df.format(dN_Ndt[0,h])+sp+df.format(dN[0,h]/(dt*events))+"\n")
     fout.close()
     for h in range(nt):
-        timestr=':05.2f'.format((h+0.5)*dt)
+        timestr='{:06.2f}'.format(h*dt+0.5)
         fout=open(hadname+"_zx_distr_t_"+timestr+"_"+output_suff+".dat","w")
         fout.write("# N "+hadname+" = "+str(hadrons_in_xz[q,h])+"\n")
         fout.write("# N events = "+str(events)+"\n")
         fout.write("# time = "+cf.format((h+0.5)*dt)+"\n")
-        fout.write("# x    z      dN/(N_"+hadname+" dxdz)      dN/(N_events dxdz)\n")
-        for k in range(nz):
-            for i in range(nx):
-                fout.write(cf.format((i+0.5)*dx)+sp+cf.format((k+0.5)*dz)+sp+df.format(dN_Ndxdz[q,h,i,k])+sp+df.format(dN_Ndxdz[q,h,i,k]/events)+"\n")
+        fout.write("# z    x      dN/(N_"+hadname+" dxdz)      dN/(N_events dxdz)\n")
+        for i in range(nx):
+            for k in range(nz):
+                fout.write(cf.format((k+0.5)*dz-zside)+sp+cf.format((i+0.5)*dx-xside)+sp+df.format(dN_Ndxdz[q,h,i,k])+sp+df.format(dN_dxdz[q,h,i,k]/(events*dx*dz))+"\n")
             fout.write("\n")
         fout.close()
