@@ -9,8 +9,9 @@ hadron_ids=(27,40)
 hadron_names=("Lambda","Sigma")
 
 # time resolution
-dt=0.5
-
+dt=1
+# time start
+time_min=0.5
 
 # x,z resolution
 dx=1
@@ -24,7 +25,7 @@ raplim=100
 ptmin=0.1
 ptmax=3.
 
-# time max
+# time max at center cell
 tmax=160
 
 # preliminary consistency check
@@ -35,7 +36,7 @@ else:
     nhad=len(hadron_ids)
 
 #number of timesteps (automatically set from dt and tmax)
-nt=int(math.floor(tmax/dt))
+nt=int(math.floor((tmax+dt/2.-time_min)/dt))
 
 nx=int(math.floor(2*xside/dx))
 nz=int(math.floor(2*zside/dz))
@@ -94,7 +95,7 @@ for line in pi:
       rapidity=0.5*math.log((En+pz)/(En-pz))
       pt=math.sqrt(px**2+py**2)
       if((abs(rapidity)<raplim) and (pt>=ptmin) and (pt<=ptmax)):
-         h=int(math.floor(t/dt))
+         h=int(math.floor((t-time_min)/dt))
          #if(stuff[0]==b"27"): (old format)
          i=int(math.floor((x+xside)/dx))
          k=int(math.floor((z+zside)/dz))
@@ -112,7 +113,7 @@ for i in range(nhad):
         dN_Ndt[i,:]=dN[i,:]/(N_hadrons[i]*dt)
     for h in range(nt):
         if hadrons_in_xz[i,h] > 0:
-            dN_Ndxdz[i,h,:,:]=dN_dxdz[i,h,:,:]/(hadrons_in_xz[i,h]*dx*dz)
+            dN_Ndxdz[i,h,:,:]=dN_dxdz[i,h,:,:]/(hadrons_in_xz[i,h]*dx*dz*dt)
 
 #now we print the results into a file
 sp="          "
@@ -125,7 +126,7 @@ for q in range(nhad):
     fout.write("# N events = "+str(events)+"\n")
     fout.write("# t      dN/(N_"+hadname+" dt)      dN/(N_events dt)\n")
     for h in range(nt):
-        fout.write(cf.format(h*dt+0.5)+sp+df.format(dN_Ndt[0,h])+sp+df.format(dN[0,h]/(dt*events))+"\n")
+        fout.write(cf.format(h*dt+0.5+time_min)+sp+df.format(dN_Ndt[0,h])+sp+df.format(dN[0,h]/(dt*events))+"\n")
     fout.close()
     for h in range(nt):
         timestr='{:06.2f}'.format(h*dt+0.5)
@@ -133,9 +134,9 @@ for q in range(nhad):
         fout.write("# N "+hadname+" = "+str(hadrons_in_xz[q,h])+"\n")
         fout.write("# N events = "+str(events)+"\n")
         fout.write("# time = "+cf.format((h+0.5)*dt)+"\n")
-        fout.write("# z    x      dN/(N_"+hadname+" dxdz)      dN/(N_events dxdz)\n")
+        fout.write("# z    x      dN/(N_"+hadname+" dxdzdt)      dN/(N_events dxdzdt)\n")
         for i in range(nx):
             for k in range(nz):
-                fout.write(cf.format((k+0.5)*dz-zside)+sp+cf.format((i+0.5)*dx-xside)+sp+df.format(dN_Ndxdz[q,h,i,k])+sp+df.format(dN_dxdz[q,h,i,k]/(events*dx*dz))+"\n")
+                fout.write(cf.format((k+0.5)*dz-zside)+sp+cf.format((i+0.5)*dx-xside)+sp+df.format(dN_Ndxdz[q,h,i,k])+sp+df.format(dN_dxdz[q,h,i,k]/(events*dx*dz*dt))+"\n")
             fout.write("\n")
         fout.close()
