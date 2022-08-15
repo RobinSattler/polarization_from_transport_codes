@@ -11,14 +11,12 @@ from mpl_toolkits.axes_grid1 import make_axes_locatable
 import matplotlib.pyplot as plt
 import gzip
 
+# we make 2D x-z plots at y=y_of_interest, for t_min<=t<=t_max 
 y_of_interest=[0.]
-
 time_min=15.00
 time_max=15.00
-
 limval=1.0 #maximum value in cbar
-
-#cmap = matplotlib.cm.jet
+#vorticity_cmap = matplotlib.cm.jet
 vorticity_cmap = matplotlib.cm.gnuplot
 
 #we get the name of input and output files

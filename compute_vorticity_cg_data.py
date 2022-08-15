@@ -46,6 +46,7 @@ else:
      
 data=pickle.load(pi)
 
+# we get the data from the tuple read from the pickle archive
 intt,inxx,inyy,inzz,invx,invy,invz,inrho,inen,inmuSTD,intempSTD,inmuANI,intempANI,ptra,ppar,num_had,pressSTD,sSTD,pressANI,sANI,rho_bab=data[:]
 
 dt=intt[1]-intt[0]
@@ -58,6 +59,7 @@ nx=len(inxx)
 ny=len(inyy)
 nz=len(inzz)
 
+# this function replaces the value of a cell with the average values of the cells in the surroundig cube
 def smooth_down(array,i,j,k):
     tot=0
     p=0
@@ -79,7 +81,7 @@ else:
     temp=intempSTD
                          
 
-
+# the gamma Lorentz factor
 glf=1/np.sqrt(1-invx**2-invy**2-invz**2)
 
 #old_settings=np.seterr(divide='ignore',invalid='ignore') #seterr sets the new values and returns the old settings
