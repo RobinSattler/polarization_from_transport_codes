@@ -64,7 +64,7 @@ def smooth_down(array,i,j,k):
     for l in range(max(i-1,0),min(i+1,nx)):
         for m in range(max(j-1,0),min(j+1,ny)): 
             for n in range(max(k-1,0),min(k+1,nz)):
-                tot=tot+array[l,mn,m]
+                tot=tot+array[l,m,n]
                 p=p+1.
     if p!=0:
         return tot/p
@@ -103,19 +103,19 @@ for h in range(nt):
                     bz[h,i,j,k]=-invz[h,i,j,k]*glf[h,i,j,k]/temp[h,i,j,k]
 
 if(enable_smooth):
-    bt_fix=np.zeros_like(bt)
-    bx_fix=np.zeros_like(bx)
-    by_fix=np.zeros_like(by)
-    bz_fix=np.zeros_like(bz)
+    bt_fixed=np.zeros_like(bt)
+    bx_fixed=np.zeros_like(bx)
+    by_fixed=np.zeros_like(by)
+    bz_fixed=np.zeros_like(bz)
     for h in range(nt):
         for i in range(nx):
             for j in range(ny):
                 for k in range(nz):
                     if(temp[h,i,j,k]<temp_limit):
-                        bt_fixed[h,i,j,k]=smoot_down(bt[h,:,:,:],i,j,k)  
-                        bx_fixed[h,i,j,k]=smoot_down(bx[h,:,:,:],i,j,k)  
-                        by_fixed[h,i,j,k]=smoot_down(by[h,:,:,:],i,j,k)  
-                        bz_fixed[h,i,j,k]=smoot_down(bz[h,:,:,:],i,j,k)  
+                        bt_fixed[h,i,j,k]=smooth_down(bt[h,:,:,:],i,j,k)  
+                        bx_fixed[h,i,j,k]=smooth_down(bx[h,:,:,:],i,j,k)  
+                        by_fixed[h,i,j,k]=smooth_down(by[h,:,:,:],i,j,k)  
+                        bz_fixed[h,i,j,k]=smooth_down(bz[h,:,:,:],i,j,k)  
     bt=bt_fixed
     bx=bx_fixed
     by=by_fixed
