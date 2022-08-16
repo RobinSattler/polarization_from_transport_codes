@@ -111,6 +111,12 @@ count_reads=0
 count_lines=0
 otime=0
 while(True):
+    # we read the hadron data file hf in slices, each nlines long
+    # the hadron file can be very long, in this way if the script is interrupted
+    # some results are still printed for a preliminary analysis, while still avoiding
+    # to print the results line by line, which is usually inefficient because of the
+    # large number of I/O operations. On the other hand, probably the best approach
+    # is to split the hadron data files in several chunckes.
     it=islice(hf,count_lines,count_lines+nlines)
     for line in it:
         count_reads=count_reads+1
@@ -118,10 +124,13 @@ while(True):
         if(len(stuff)!=9):
             continue
         else:
+            # we iterate over the hadron species of interest declared at the beginning of the file
             for el,kel in enumerate(ids,0):
-                ds=ind[el]
-                m=masses[el]
                 if(int(stuff[0])==kel):
+                    # counter of the number of hadrons the species "kel" with index el
+                    ds=ind[el]
+                    # mass of the selected hadron species, it is defined at the beginning of the file
+                    m=masses[el]
                     t,x,y,z,Ep,px,py,pz=np.float64(stuff[1:])
                     #print("Check mass: "+str(m-math.sqrt(Ep**2-px**2-py**2-pz**2)))
                     if(t>tmax):
@@ -170,7 +179,7 @@ while(True):
                     Sy=fac*(Ep*osy+(pz*otx-px*otz))
                     #print("UUUUU "+str(Ep)+sp+str(osy)+sp+str(pz)+sp+str(otx)+sp+str(px)+sp+str(otz))
                     Sz=fac*(Ep*osz+(px*oty-py*otx))
-                    #we compute S in the particle LRF frame
+                    #we boost S in the particle LRF frame
                     bof=(px*Sx+py*Sy+pz*Sz)/(Ep*(m+Ep))
                     Sx_lrf=Sx-bof*px
                     if abs(Sx_lrf)>0.5:
@@ -204,6 +213,7 @@ while(True):
 
     ff='{:12.8e}'
 
+    # we save in the outputfiles the results of the hadron data file slice
     for i,n in enumerate(outfiles,0):
         #print("Writing "+n)
         for a in range(0,ind[i]):
@@ -212,10 +222,12 @@ while(True):
             for q in range(6,10):
                 fon[i].write(sp+ff.format(datas[i][a,q]))
             fon[i].write("\n")
-
+    
+    # we exit from the while(True) loop
     if(count_reads < nlines):
         break
     else:
+        # we increment the slice offset and we reset the counters
         count_lines=count_lines+nlines
         count_reads=0
         #print("*** Before reset we had: "+str(ind[:]))
