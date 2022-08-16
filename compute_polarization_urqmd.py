@@ -172,8 +172,11 @@ while(True):
                         orap+=1
                         continue
                     pt=math.sqrt(px**2+py**2)
-                    if((pt<pt_min) or (pt>pt_max)):
-                        opt+=1
+                    if(pt<pt_min):
+                        opt_low+=1
+                        continue
+                    if(pt>pt_max):
+                        opt_high+=1
                         continue
 
                     h=int(math.floor((t-tmin)/dt))
