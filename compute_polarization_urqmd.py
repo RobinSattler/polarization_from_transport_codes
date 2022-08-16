@@ -103,7 +103,17 @@ for i,n in enumerate(outfiles,0):
 
 count_reads=0
 count_lines=0
-otime=0
+otime_orap=0 # out of max time hadrons with rapidity beyond the limits
+otime_irap=0 # out of max time hadrons with rapidity within the limits
+ospace_x_orap=0 # out of x borders hadrons with rapidity beyond the limits
+ospace_x_irap=0 # out of x borders hadrons with rapidity within the limits
+ospace_y_orap=0 # out of y borders hadrons with rapidity beyond the limits
+ospace_y_irap=0 # out of y borders hadrons with rapidity within the limits
+ospace_z_orap=0 # out of z borders hadrons with rapidity beyond the limits
+ospace_z_irap=0 # out of z borders hadrons with rapidity within the limits
+orap=0 # hadron within the time space box with rapidity beyond the limits
+opt_low=0 # hadron within the space time box with rapdity within the limits, but pt < pt_min
+opt_high=0 # hadron within the space time box with rapdity within the limits, but pt > pt_max
 while(True):
     # we read the hadron data file hf in slices, each nlines long
     # the hadron file can be very long, in this way if the script is interrupted
@@ -126,19 +136,46 @@ while(True):
                     # mass of the selected hadron species, it is defined at the beginning of the file
                     m=masses[el]
                     t,x,y,z,Ep,px,py,pz=np.float64(stuff[1:])
-                    #print("Check mass: "+str(m-math.sqrt(Ep**2-px**2-py**2-pz**2)))
-                    if(t>tmax):
-                        rapidity=0.5*math.log((Ep+pz)/(Ep-pz))
-                        if(abs(rapidity)<rap_lim):
-                           otime=otime+1
-                    if((z<zmin) or (z>zmax) or (t<tmin) or (t>tmax) or (x<xmin) or (x>xmax) or (y<ymin) or (y>ymax)):
-                        continue
                     rapidity=0.5*math.log((Ep+pz)/(Ep-pz))
+                    # we count how many are the hadrons excluded because of the space-time interval in which
+                    # we have data for the vorticity or because they are out of the rapidity and transverse
+                    # momentum intervals
+                    discarded=False
+                    if(t>tmax):
+                        discarded=True
+                        if abs(rapidity)<rap_lim:
+                            otime_orap+=1
+                        else:
+                            otime_irap+=1
+                    if((x < xmin) or (x > xmax)):
+                        discarded=True
+                        if abs(rapidity)<rap_lim:
+                            ospace_x_orap+=1
+                        else:
+                            ospace_x_irap+=1
+                    if((y < ymin) or (y > ymax)):
+                        discarded=True
+                        if abs(rapidity)<rap_lim:
+                            ospace_y_orap+=1
+                        else:
+                            ospace_y_irap+=1
+                    if((z < zmin) or (z > zmax)):
+                        discarded=True
+                        if abs(rapidity)<rap_lim:
+                            ospace_z_orap+=1
+                        else:
+                            ospace_z_irap+=1
+                    if discarded:
+                        continue
+                    # if we are here we inside the space-time box for which we have vorticity data
                     if(abs(rapidity)>rap_lim):
+                        orap+=1
                         continue
                     pt=math.sqrt(px**2+py**2)
                     if((pt<pt_min) or (pt>pt_max)):
+                        opt+=1
                         continue
+
                     h=int(math.floor((t-tmin)/dt))
                     i=int(math.floor((x-xmin)/dx))
                     j=int(math.floor((y-ymin)/dy))
@@ -203,8 +240,6 @@ while(True):
         print("Please, check...")
         sys.exit(3)
 
-    print("Discarded: "+str(otime))
-
     ff='{:12.8e}'
 
     # we save in the outputfiles the results of the hadron data file slice
@@ -228,8 +263,18 @@ while(True):
         for i in range(len(ind)):
             ind[i]=0
 
-
 for i,n in enumerate(outfiles,0):
     fon[i].close() 
 hf.close()
 print("All done!")
+print("Discarded with t > "+str(tmax)+" and |rapidity| > "+str(rap_lim)+" : "+str(otime_orap))
+print("Discarded with t > "+str(tmax)+" and |rapidity| <= "+str(rap_lim)+" : "+str(otime_irap))
+print("Discarded with x < "+str(xmin)+" and x > "+str(xmax)+" and |rapidity| > "+str(rap_lim)+" : "+str(ospace_x_orap))
+print("Discarded with x < "+str(xmin)+" and x > "+str(xmax)+" and |rapidity| < "+str(rap_lim)+" : "+str(ospace_x_irap))
+print("Discarded with y < "+str(ymin)+" and y > "+str(ymax)+" and |rapidity| > "+str(rap_lim)+" : "+str(ospace_y_orap))
+print("Discarded with y < "+str(ymin)+" and y > "+str(ymax)+" and |rapidity| < "+str(rap_lim)+" : "+str(ospace_y_irap))
+print("Discarded with z < "+str(zmin)+" and z > "+str(zmax)+" and |rapidity| > "+str(rap_lim)+" : "+str(ospace_z_orap))
+print("Discarded with z < "+str(zmin)+" and z > "+str(zmax)+" and |rapidity| < "+str(rap_lim)+" : "+str(ospace_z_irap))
+print("Discarded within the space-time box because of |rapidity| > "+str(rap_lim)+" : "+str(orap))
+print("Discarded within the space-time box with |rapidity| < "+str(rap_lim)+" because of pt < "+str(pt_min)+" : "+str(opt_low))
+print("Discarded within the space-time box with |rapidity| < "+str(rap_lim)+" because of pt > "+str(pt_max)+" : "+str(opt_high))
