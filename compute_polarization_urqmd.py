@@ -103,17 +103,19 @@ for i,n in enumerate(outfiles,0):
 
 count_reads=0
 count_lines=0
-otime_orap=0 # out of max time hadrons with rapidity beyond the limits
-otime_irap=0 # out of max time hadrons with rapidity within the limits
-ospace_x_orap=0 # out of x borders hadrons with rapidity beyond the limits
-ospace_x_irap=0 # out of x borders hadrons with rapidity within the limits
-ospace_y_orap=0 # out of y borders hadrons with rapidity beyond the limits
-ospace_y_irap=0 # out of y borders hadrons with rapidity within the limits
-ospace_z_orap=0 # out of z borders hadrons with rapidity beyond the limits
-ospace_z_irap=0 # out of z borders hadrons with rapidity within the limits
-orap=0 # hadron within the time space box with rapidity beyond the limits
-opt_low=0 # hadron within the space time box with rapdity within the limits, but pt < pt_min
-opt_high=0 # hadron within the space time box with rapdity within the limits, but pt > pt_max
+n_had=len(ids)
+tot_hadrons=np.zeros(n_had,dtype=np.int64) # total hadrons of a certain species
+otime_orap=np.zeros(n_had,dtype=np.int64) # out of max time hadrons with rapidity beyond the limits
+otime_irap=np.zeros(n_had,dtype=np.int64) # out of max time hadrons with rapidity within the limits
+ospace_x_orap=np.zeros(n_had,dtype=np.int64) # out of x borders hadrons with rapidity beyond the limits
+ospace_x_irap=np.zeros(n_had,dtype=np.int64) # out of x borders hadrons with rapidity within the limits
+ospace_y_orap=np.zeros(n_had,dtype=np.int64) # out of y borders hadrons with rapidity beyond the limits
+ospace_y_irap=np.zeros(n_had,dtype=np.int64) # out of y borders hadrons with rapidity within the limits
+ospace_z_orap=np.zeros(n_had,dtype=np.int64) # out of z borders hadrons with rapidity beyond the limits
+ospace_z_irap=np.zeros(n_had,dtype=np.int64) # out of z borders hadrons with rapidity within the limits
+orap=np.zeros(n_had,dtype=np.int64) # hadrons within the time space box with rapidity beyond the limits
+opt_low=np.zeros(n_had,dtype=np.int64) # hadrons within the space time box with rapdity within the limits, but pt < pt_min
+opt_high=np.zeros(n_had,dtype=np.int64) # hadrons within the space time box with rapdity within the limits, but pt > pt_max
 while(True):
     # we read the hadron data file hf in slices, each nlines long
     # the hadron file can be very long, in this way if the script is interrupted
@@ -131,7 +133,9 @@ while(True):
             # we iterate over the hadron species of interest declared at the beginning of the file
             for el,kel in enumerate(ids,0):
                 if(int(stuff[0])==kel):
-                    # counter of the number of hadrons the species "kel" with index el
+                    # counter of the number of hadrons the species "kel" with index el (in all the file)
+                    tot_hadrons[el]+=1
+                    # counter of the number of hadrons the species "kel" with index el (within a slice)
                     ds=ind[el]
                     # mass of the selected hadron species, it is defined at the beginning of the file
                     m=masses[el]
@@ -144,39 +148,39 @@ while(True):
                     if(t>tmax):
                         discarded=True
                         if abs(rapidity)<rap_lim:
-                            otime_orap+=1
+                            otime_orap[el]+=1
                         else:
-                            otime_irap+=1
+                            otime_irap[el]+=1
                     if((x < xmin) or (x > xmax)):
                         discarded=True
                         if abs(rapidity)<rap_lim:
-                            ospace_x_orap+=1
+                            ospace_x_orap[el]+=1
                         else:
-                            ospace_x_irap+=1
+                            ospace_x_irap[el]+=1
                     if((y < ymin) or (y > ymax)):
                         discarded=True
                         if abs(rapidity)<rap_lim:
-                            ospace_y_orap+=1
+                            ospace_y_orap[el]+=1
                         else:
-                            ospace_y_irap+=1
+                            ospace_y_irap[el]+=1
                     if((z < zmin) or (z > zmax)):
                         discarded=True
                         if abs(rapidity)<rap_lim:
-                            ospace_z_orap+=1
+                            ospace_z_orap[el]+=1
                         else:
-                            ospace_z_irap+=1
+                            ospace_z_irap[el]+=1
                     if discarded:
                         continue
                     # if we are here we inside the space-time box for which we have vorticity data
                     if(abs(rapidity)>rap_lim):
-                        orap+=1
+                        orap[el]+=1
                         continue
                     pt=math.sqrt(px**2+py**2)
                     if(pt<pt_min):
-                        opt_low+=1
+                        opt_low[el]+=1
                         continue
                     if(pt>pt_max):
-                        opt_high+=1
+                        opt_high[el]+=1
                         continue
 
                     h=int(math.floor((t-tmin)/dt))
@@ -270,14 +274,18 @@ for i,n in enumerate(outfiles,0):
     fon[i].close() 
 hf.close()
 print("All done!")
-print("Discarded with t > "+str(tmax)+" and |rapidity| > "+str(rap_lim)+" : "+str(otime_orap))
-print("Discarded with t > "+str(tmax)+" and |rapidity| <= "+str(rap_lim)+" : "+str(otime_irap))
-print("Discarded with x < "+str(xmin)+" and x > "+str(xmax)+" and |rapidity| > "+str(rap_lim)+" : "+str(ospace_x_orap))
-print("Discarded with x < "+str(xmin)+" and x > "+str(xmax)+" and |rapidity| < "+str(rap_lim)+" : "+str(ospace_x_irap))
-print("Discarded with y < "+str(ymin)+" and y > "+str(ymax)+" and |rapidity| > "+str(rap_lim)+" : "+str(ospace_y_orap))
-print("Discarded with y < "+str(ymin)+" and y > "+str(ymax)+" and |rapidity| < "+str(rap_lim)+" : "+str(ospace_y_irap))
-print("Discarded with z < "+str(zmin)+" and z > "+str(zmax)+" and |rapidity| > "+str(rap_lim)+" : "+str(ospace_z_orap))
-print("Discarded with z < "+str(zmin)+" and z > "+str(zmax)+" and |rapidity| < "+str(rap_lim)+" : "+str(ospace_z_irap))
-print("Discarded within the space-time box because of |rapidity| > "+str(rap_lim)+" : "+str(orap))
-print("Discarded within the space-time box with |rapidity| < "+str(rap_lim)+" because of pt < "+str(pt_min)+" : "+str(opt_low))
-print("Discarded within the space-time box with |rapidity| < "+str(rap_lim)+" because of pt > "+str(pt_max)+" : "+str(opt_high))
+sf='{:5.3f}'
+for i,n in enumerate(names):
+    nh=tot_hadrons[i]/100.
+    print("Total "+n+" : "+str(tot_hadrons[i]))
+    print("Discarded "+n+" with t > "+str(tmax)+" and |rapidity| > "+str(rap_lim)+" : "+str(otime_orap[i])+" ("+sf.format(otime_orap[i]/nh)+"%)")
+    print("Discarded "+n+" with t > "+str(tmax)+" and |rapidity| <= "+str(rap_lim)+" : "+str(otime_irap[i])+" ("+sf.format(otime_irap[i]/nh)+"%)")
+    print("Discarded "+n+" with x < "+str(xmin)+" and x > "+str(xmax)+" and |rapidity| > "+str(rap_lim)+" : "+str(ospace_x_orap[i])+" ("+sf.format(ospace_x_orap[i]/nh)+"%)")
+    print("Discarded "+n+" with x < "+str(xmin)+" and x > "+str(xmax)+" and |rapidity| < "+str(rap_lim)+" : "+str(ospace_x_irap[i])+" ("+sf.format(ospace_x_irap[i]/nh)+"%)")
+    print("Discarded "+n+" with y < "+str(ymin)+" and y > "+str(ymax)+" and |rapidity| > "+str(rap_lim)+" : "+str(ospace_y_orap[i])+" ("+sf.format(ospace_y_orap[i]/nh)+"%)")
+    print("Discarded "+n+" with y < "+str(ymin)+" and y > "+str(ymax)+" and |rapidity| < "+str(rap_lim)+" : "+str(ospace_y_irap[i])+" ("+sf.format(ospace_y_irap[i]/nh)+"%)")
+    print("Discarded "+n+" with z < "+str(zmin)+" and z > "+str(zmax)+" and |rapidity| > "+str(rap_lim)+" : "+str(ospace_z_orap[i])+" ("+sf.format(ospace_z_orap[i]/nh)+"%)")
+    print("Discarded "+n+" with z < "+str(zmin)+" and z > "+str(zmax)+" and |rapidity| < "+str(rap_lim)+" : "+str(ospace_z_irap[i])+" ("+sf.format(ospace_z_irap[i]/nh)+"%)")
+    print("Discarded "+n+" within the space-time box because of |rapidity| > "+str(rap_lim)+" : "+str(orap[i])+" ("+sf.format(orap[i]/nh)+"%)")
+    print("Discarded "+n+" within the space-time box with |rapidity| < "+str(rap_lim)+" because of pt < "+str(pt_min)+" : "+str(opt_low[i])+" ("+sf.format(opt_low[i]/nh)+"%)")
+    print("Discarded "+n+" within the space-time box with |rapidity| < "+str(rap_lim)+" because of pt > "+str(pt_max)+" : "+str(opt_high[i])+" ("+sf.format(opt_high[i]/nh)+"%)")
