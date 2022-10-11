@@ -148,27 +148,27 @@ while(True):
                     if(t>tmax):
                         discarded=True
                         if abs(rapidity)<rap_lim:
-                            otime_orap[el]+=1
-                        else:
                             otime_irap[el]+=1
+                        else:
+                            otime_orap[el]+=1
                     if((x < xmin) or (x > xmax)):
                         discarded=True
                         if abs(rapidity)<rap_lim:
-                            ospace_x_orap[el]+=1
-                        else:
                             ospace_x_irap[el]+=1
+                        else:
+                            ospace_x_orap[el]+=1
                     if((y < ymin) or (y > ymax)):
                         discarded=True
                         if abs(rapidity)<rap_lim:
-                            ospace_y_orap[el]+=1
-                        else:
                             ospace_y_irap[el]+=1
+                        else:
+                            ospace_y_orap[el]+=1
                     if((z < zmin) or (z > zmax)):
                         discarded=True
                         if abs(rapidity)<rap_lim:
-                            ospace_z_orap[el]+=1
-                        else:
                             ospace_z_irap[el]+=1
+                        else:
+                            ospace_z_orap[el]+=1
                     if discarded:
                         continue
                     # if we are here we inside the space-time box for which we have vorticity data
