@@ -335,7 +335,7 @@ elif der_type == 2:
                 for k in range(nz):
                     if(k==0):
                         if((by[h,i,j,0]!=0) and (by[h,i,j,1]!=0)):
-                            dbt_dy[h,i,j,0]=(by[h,i,j,1]-by[h,i,j,0])/dz
+                            dby_dz[h,i,j,0]=(by[h,i,j,1]-by[h,i,j,0])/dz
                     elif(k==nz-1):
                         if((by[h,i,j,nz-1]!=0) and (by[h,i,j,nz-2]!=0)):
                             dby_dz[h,i,j,nz-1]=(by[h,i,j,nz-1]-by[h,i,j,nz-2])/dz
@@ -353,7 +353,7 @@ elif der_type == 2:
                 for k in range(nz):
                     if(k==0):
                         if((bx[h,i,j,0]!=0) and (bx[h,i,j,1]!=0)):
-                            dbx_dy[h,i,j,0]=(bx[h,i,j,1]-bx[h,i,j,0])/dz
+                            dbx_dz[h,i,j,0]=(bx[h,i,j,1]-bx[h,i,j,0])/dz
                     elif(k==nz-1):
                         if((bx[h,i,j,nz-1]!=0) and (bx[h,i,j,nz-2]!=0)):
                             dbx_dz[h,i,j,nz-1]=(bx[h,i,j,nz-1]-bx[h,i,j,nz-2])/dz
