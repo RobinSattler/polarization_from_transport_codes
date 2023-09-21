@@ -21,8 +21,6 @@ from scipy import interpolate
 """
 
 # PARAMETERS
-use_binary = True # if True it reads binary th. lattice output, if False ascii
-
 eos_type = 2 #1 = Official SMASH HRG (e,nB,nQ), 2 = UrMQD
 
 eos_dir = "EOS_HG_UrQMD"
