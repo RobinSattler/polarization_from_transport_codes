@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import fileinput
 import math
 import numpy as np
@@ -24,7 +26,7 @@ minlogval=-3 #minimum value to display in log plots
 N_input_files=len(sys.argv)-1
 
 if(N_input_files!=3):
-   print ('Syntax: ./make_cg_plots.py <pickle binary data file> <output directory> <plot common title>')
+   print ('Syntax: python3 make_vort_deriv_plots_for_dbg_smash.py <pickle binary data file> <output directory> <plot common title>')
    sys.exit(1)
 
 inputfile=sys.argv[1]

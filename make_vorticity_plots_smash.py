@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 # version 0.1.1 08/01/2022
 
 import fileinput
@@ -23,7 +25,7 @@ vorticity_cmap = matplotlib.cm.gnuplot
 N_input_files=len(sys.argv)-1
 
 if(N_input_files!=3):
-   print ('Syntax: ./make_cg_plots.py <pickle binary data file> <output directory> <plot common title>')
+   print ('Syntax: python3 make_vorticity_plots_smash.py <pickle binary data file> <output directory> <plot common title>')
    sys.exit(1)
 
 inputfile=sys.argv[1]

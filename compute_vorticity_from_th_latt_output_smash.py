@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 # version 0.2.0 - 22/04/2022
 
 import fileinput
@@ -38,7 +40,7 @@ hbarc=0.197326
 N_input_files=len(sys.argv)-1
 
 if (N_input_files!=2):
-   print ('Syntax: ./compute_vorticity_myder_smash.py <pickled archive file with SMASH data> <outputfile>')
+   print ('Syntax: python3 compute_vorticity_from_th_lattice_output_smash.py <pickled archive file with SMASH data> <outputfile>')
    sys.exit(1)
 
 inputfile=sys.argv[1]

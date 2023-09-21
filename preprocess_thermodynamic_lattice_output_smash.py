@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 # preprocess_thermodynamic_lattice_output_smash.py - version 0.1.1 - 04/01/2022
 
 import fileinput
@@ -32,9 +34,9 @@ if(verbose):
 N_input_args=len(sys.argv)-1
 
 if(N_input_args!=2):
-   print ('Syntax: ./preprocess_thermodynamic_lattice_output_smash.py <data dir> <outputfile>')
-   print ("Directory containing the files produced by SMASH with Thermodynamic Lattice Output")
-   print ("outputfile is obviously the name of the output file with the results of the postprocessing")
+   print ('Syntax: python3 preprocess_thermodynamic_lattice_output_smash.py <data dir> <outputfile>')
+   print ("where:\n  <data dir> is the directory containing the files produced by SMASH with Thermodynamic Lattice Output")
+   print ("  <outputfile> is obviously the name of the output file with the results of the postprocessing")
    sys.exit(1)
 
 #we get the name of input and output files

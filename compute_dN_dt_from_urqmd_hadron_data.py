@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 # in this version we assume that we deal with two hadrons with id 27 and 40
 
 import math
@@ -24,7 +26,7 @@ nt=int(math.floor(tmax/dt))
 N_input_files=len(sys.argv)-1
 
 if(N_input_files<2):
-  print ('Syntax: ./compute_dNpy <inputfile> <output_suffix>')
+  print ('Syntax: python3 compute_dNpy <inputfile> <output_suffix>')
   sys.exit(1)
 
 inputfile=sys.argv[1]

@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import fileinput
 import math
 import numpy as np
@@ -36,7 +38,7 @@ avg_exc=np.zeros(len(ids),dtype=np.float64) #averages excluding the entry if its
 N_input_files=len(sys.argv)-1
 
 if(N_input_files!=2):
-   print ('Syntax: ./compute_polarization.py <vorticity pickled file> <hadron_data_inputfile>')
+   print ('Syntax: python3 compute_polarization.py <vorticity pickled file> <hadron_data_inputfile>')
    sys.exit(1)
 
 vorfile=sys.argv[1]

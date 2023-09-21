@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 # 14/05/2022
 
 import math
@@ -43,7 +45,7 @@ nz=int(math.floor(2*zside/dz))
 N_input_files=len(sys.argv)-1
 
 if(N_input_files<2):
-  print ('Syntax: ./compute_dNpy <inputfile> <output_prefix>')
+  print ('Syntax: python3 compute_dN_polarization.py <inputfile> <output_prefix>')
   sys.exit(1)
 
 inputfile=sys.argv[1]

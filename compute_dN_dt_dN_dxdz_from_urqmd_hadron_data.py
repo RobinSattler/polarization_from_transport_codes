@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import math
 import numpy as np
 import sys
@@ -45,7 +47,7 @@ nz=int(math.floor(2*zside/dz))
 N_input_files=len(sys.argv)-1
 
 if(N_input_files<2):
-  print ('Syntax: ./compute_dNpy <inputfile> <output_suffix>')
+  print ('Syntax: python3 compute_dN_dt_dN_dxdz_from_urqmd_hadron_data.py <inputfile> <output_suffix>')
   sys.exit(1)
 
 inputfile=sys.argv[1]

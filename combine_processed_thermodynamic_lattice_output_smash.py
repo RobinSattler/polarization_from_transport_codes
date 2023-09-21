@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 # combine_processed_thermodynamic_lattice_output_smash.py - version 0.1.2- 04/01/2022
 
 import fileinput
@@ -19,7 +21,8 @@ if(verbose):
 N_input_args=len(sys.argv)-1
 
 if(N_input_args<2):
-   print ('Syntax: ./combine_processed_thermodynamic_lattice_output_smash.py <file data 1> [data 2] ... <outputfile>')
+   print ('Syntax: pythone3 combine_processed_thermodynamic_lattice_output_smash.py <file data 1> [data 2] ... <outputfile>')
+   print ("where:")
    print ("file data 1,2,3...N are the pickled files produced by preprocess_thermodynamic_lattice_output_smash.py")
    print ("outputfile is obviously the name of the output file with the results of the postprocessing")
    sys.exit(1)
