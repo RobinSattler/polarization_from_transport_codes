@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-# preprocess_thermodynamic_lattice_output_smash.py - version 0.1.1 - 04/01/2022
-
 import fileinput
 import math
 import numpy as np
@@ -15,7 +13,7 @@ from timeit import default_timer as timer
 sys.setrecursionlimit(10000)
 
 #use binary (True) or ascii (False) input data
-use_binary=True
+use_binary=False
 
 #density tpye (it can be baryon or hadron)
 density_type="hadron"
@@ -136,6 +134,9 @@ v_list=[]
 
 #empty list with the output times
 tt=[]
+
+#format to display the computation time
+tf='{:8.5f}'
 
 #functions to read the header
 def read_ascii_header(infile):
@@ -297,7 +298,7 @@ for n_i in range(nf):
             tt.append(time)
         else:
             if(time!=tt[index]):
-                print("Error when reading file "+i+":")
+                print("Error when reading file "+str(i)+":")
                 print("At step "+str(index)+" time "+str(tt[index])+" was expected, while "+str(time)+" was found. I quit.\n")
                 sys.exit(2)
 
@@ -327,7 +328,7 @@ for n_i in range(nf):
     fp_vl.close()
     if(verbose):
         end_time = timer()
-        print(i_tmn+", "+i_jqbs+", "+i_vl+" read in "+tf.format(end_time-start_time)+" seconds")
+        print(str(i_tmn)+", "+str(i_jqbs)+", "+str(i_vl)+" read in "+tf.format(end_time-start_time)+" seconds")
 N_events=n_i+1
 
 # we transform the lists of 3D arrays into 4D arrays
