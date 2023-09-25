@@ -35,7 +35,7 @@ nlines=2000000
 N_input_files=len(sys.argv)-1
 
 if(N_input_files!=3):
-   print ('Syntax: python3 compute_polarization_smash.py <vorticity pickled file> <hadron_data_inputfile> <outputfile>')
+   print ('Syntax: python3 compute_mean_spin_smash.py <vorticity pickled file> <hadron_data_inputfile> <outputfile>')
    sys.exit(1)
 
 vorfile=sys.argv[1]

@@ -39,7 +39,7 @@ print_all=True
 N_input_files=len(sys.argv)-1
 
 if(N_input_files!=3):
-   print ('Syntax: ./compute_polarization.py <vorticity pickled file> <hadron_data_inputfile> <outputfile>')
+   print ('Syntax: python3 compute_mean_spin_smash_Oscar_GM_files.py <vorticity pickled file> <hadron_data_inputfile> <outputfile>')
    sys.exit(1)
 
 vorfile=sys.argv[1]
