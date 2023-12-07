@@ -1,11 +1,11 @@
 ## Information about the scripts contained in this repository
-## The exact syntax for each script can be obtained by invoking it without any argument
-## In the following explanations
-## nt is the total number of timesteps
-## nx, ny and nz are the number of cells in the x, y and z direction, respectively
-## tmn is the energy momentum tensor in the Landau frame
-## v is the fluid velocity (i.e. the velocity of the Landau frame in the computational frame)
-## jBQS are the net baryon, electric charge and strangeness currents, respectively
+### The exact syntax for each script can be obtained by invoking it without any argument
+### In the following explanations
+### nt is the total number of timesteps
+### nx, ny and nz are the number of cells in the x, y and z direction, respectively
+### tmn is the energy momentum tensor in the Landau frame
+### v is the fluid velocity (i.e. the velocity of the Landau frame in the computational frame)
+### jBQS are the net baryon, electric charge and strangeness currents, respectively
 
 * A - preprocess_thermodynamic_lattice_output_smash.py
   
