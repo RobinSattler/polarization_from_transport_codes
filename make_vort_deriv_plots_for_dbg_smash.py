@@ -9,7 +9,7 @@ import pickle
 import matplotlib
 from mpl_toolkits.axes_grid1 import make_axes_locatable
 import matplotlib.pyplot as plt
-from matplotlib.colors import DivergingNorm
+from matplotlib.colors import TwoSlopeNorm
 hbarc=0.197326
 
 
@@ -113,7 +113,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2.
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
   plt.imshow(vx[it,im:ip,jm:jp,k0].transpose(),extent=XYE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$v^x(x,y,0)$")
   plt.xlabel('x [fm]')
@@ -136,7 +136,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2. 
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
   plt.imshow(vx[it,im:ip,j0,km:kp].transpose(),extent=XZE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$v^x(x,0,z)$")
   plt.xlabel('x [fm]')
@@ -159,7 +159,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2.
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
 
   plt.imshow(vx[it,i0,jm:jp,km:kp].transpose(),extent=YZE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$v^x(0,y,z)$")
@@ -192,7 +192,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2.
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
 
   plt.imshow(vy[it,im:ip,jm:jp,k0].transpose(),extent=XYE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$v^y(x,y,0)$")
@@ -216,7 +216,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2. 
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
   plt.imshow(vy[it,im:ip,j0,km:kp].transpose(),extent=XZE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$v^y(x,0,z)$")
   plt.xlabel('x [fm]')
@@ -239,7 +239,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2.
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
 
   plt.imshow(vy[it,i0,jm:jp,km:kp].transpose(),extent=YZE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$v^y(0,y,z)$")
@@ -272,7 +272,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2.
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
 
   plt.imshow(vz[it,im:ip,jm:jp,k0].transpose(),extent=XYE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$v^z(x,y,0)$")
@@ -296,7 +296,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2. 
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
   plt.imshow(vz[it,im:ip,j0,km:kp].transpose(),extent=XZE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$v^z(x,0,z)$")
   plt.xlabel('x [fm]')
@@ -319,7 +319,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2.
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
 
   plt.imshow(vz[it,i0,jm:jp,km:kp].transpose(),extent=YZE, origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$v^z(0,y,z)$")
@@ -388,7 +388,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2.
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
 
   plt.imshow(bt[it,im:ip,jm:jp,k0].transpose(),extent=XYE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$\beta_t(x,y,0)$")
@@ -412,7 +412,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2.
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
 
   plt.imshow(bt[it,im:ip,j0,km:kp].transpose(),extent=XZE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$\beta_t(x,0,z)$")
@@ -436,7 +436,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2.
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
 
   plt.imshow(bt[it,i0,jm:jp,km:kp].transpose(),extent=YZE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$\beta_t(0,y,z)$")
@@ -467,7 +467,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2.
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
 
   plt.imshow(bx[it,im:ip,jm:jp,k0].transpose(),extent=XYE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$\beta_x(x,y,0)$")
@@ -491,7 +491,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2.
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
 
   plt.imshow(bx[it,im:ip,j0,km:kp].transpose(),extent=XZE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$\beta_x(x,0,z)$")
@@ -515,7 +515,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2.
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
 
   plt.imshow(bx[it,i0,jm:jp,km:kp].transpose(),extent=YZE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$\beta_x(0,y,z)$")
@@ -547,7 +547,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2.
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
   plt.imshow(by[it,im:ip,jm:jp,k0].transpose(),extent=XYE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$\beta_y(x,y,0)$")
   plt.xlabel('x [fm]')
@@ -570,7 +570,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2.
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
   plt.imshow(by[it,im:ip,j0,km:kp].transpose(),extent=XZE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$\beta_y(x,0,z)$")
   plt.xlabel('x [fm]')
@@ -593,7 +593,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2.
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
 
   plt.imshow(by[it,i0,jm:jp,km:kp].transpose(),extent=YZE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$\beta_y(0,y,z)$")
@@ -625,7 +625,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2.
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
   plt.imshow(bz[it,im:ip,jm:jp,k0].transpose(),extent=XYE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$\beta_z(x,y,0)$")
   plt.xlabel('x [fm]')
@@ -648,7 +648,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2.
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
   plt.imshow(bz[it,im:ip,j0,km:kp].transpose(),extent=XZE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$\beta_z(x,0,z)$")
   plt.xlabel('x [fm]')
@@ -671,7 +671,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2.
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
 
   plt.imshow(bz[it,i0,jm:jp,km:kp].transpose(),extent=YZE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$\beta_z(0,y,z)$")
@@ -734,7 +734,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2.
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
 
   plt.imshow(dbt_dx[it,im:ip,jm:jp,k0].transpose(),extent=XYE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$\partial \beta_t/\partial x(x,y,0)$")
@@ -758,7 +758,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2.
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
 
   plt.imshow(dbt_dx[it,im:ip,j0,km:kp].transpose(),extent=XZE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$\partial \beta_t/\partial x(x,0,z)$")
@@ -782,7 +782,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2.
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
 
   plt.imshow(dbt_dx[it,i0,jm:jp,km:kp].transpose(),extent=YZE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$\partial \beta_t/\partial x(0,y,z)$")
@@ -813,7 +813,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2.
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
 
   plt.imshow(dbt_dy[it,im:ip,jm:jp,k0].transpose(),extent=XYE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$\partial \beta_t/\partial y(x,y,0)$")
@@ -837,7 +837,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2.
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
 
   plt.imshow(dbt_dy[it,im:ip,j0,km:kp].transpose(),extent=XZE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$\partial \beta_t/\partial y(x,0,z)$")
@@ -861,7 +861,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2.
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
 
   plt.imshow(dbt_dy[it,i0,jm:jp,km:kp].transpose(),extent=YZE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$\partial \beta_t/\partial y(0,y,z)$")
@@ -892,7 +892,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2.
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
 
   plt.imshow(dbt_dz[it,im:ip,jm:jp,k0].transpose(),extent=XYE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$\partial \beta_t/\partial z(x,y,0)$")
@@ -916,7 +916,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2.
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
 
   plt.imshow(dbt_dz[it,im:ip,j0,km:kp].transpose(),extent=XZE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$\partial \beta_t/\partial z(x,0,z)$")
@@ -940,7 +940,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2.
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
 
   plt.imshow(dbt_dz[it,i0,jm:jp,km:kp].transpose(),extent=YZE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$\partial \beta_t/\partial z(0,y,z)$")
@@ -971,7 +971,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2.
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
 
   plt.imshow(dbx_dt[it,im:ip,jm:jp,k0].transpose(),extent=XYE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$\partial \beta_x/\partial t(x,y,0)$")
@@ -995,7 +995,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2.
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
 
   plt.imshow(dbx_dt[it,im:ip,j0,km:kp].transpose(),extent=XZE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$\partial \beta_x/\partial t(x,0,z)$")
@@ -1019,7 +1019,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2.
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
 
   plt.imshow(dbx_dt[it,i0,jm:jp,km:kp].transpose(),extent=YZE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$\partial \beta_x/\partial t(0,y,z)$")
@@ -1050,7 +1050,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2.
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
 
   plt.imshow(dby_dt[it,im:ip,jm:jp,k0].transpose(),extent=XYE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$\partial \beta_y/\partial t(x,y,0)$")
@@ -1074,7 +1074,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2.
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
 
   plt.imshow(dby_dt[it,im:ip,j0,km:kp].transpose(),extent=XZE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$\partial \beta_y/\partial t(x,0,z)$")
@@ -1098,7 +1098,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2.
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
 
   plt.imshow(dby_dt[it,i0,jm:jp,km:kp].transpose(),extent=YZE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$\partial \beta_y/\partial t(0,y,z)$")
@@ -1129,7 +1129,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2.
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
 
   plt.imshow(dbz_dt[it,im:ip,jm:jp,k0].transpose(),extent=XYE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$\partial \beta_z/\partial t(x,y,0)$")
@@ -1153,7 +1153,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2.
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
 
   plt.imshow(dbz_dt[it,im:ip,j0,km:kp].transpose(),extent=XZE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$\partial \beta_z/\partial t(x,0,z)$")
@@ -1177,7 +1177,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2.
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
 
   plt.imshow(dbz_dt[it,i0,jm:jp,km:kp].transpose(),extent=YZE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$\partial \beta_z/\partial t(0,y,z)$")
@@ -1208,7 +1208,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2.
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
 
   plt.imshow(dbx_dy[it,im:ip,jm:jp,k0].transpose(),extent=XYE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$\partial \beta_x/\partial y(x,y,0)$")
@@ -1232,7 +1232,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2.
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
 
   plt.imshow(dbx_dy[it,im:ip,j0,km:kp].transpose(),extent=XZE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$\partial \beta_x/\partial y(x,0,z)$")
@@ -1256,7 +1256,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2.
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
 
   plt.imshow(dbx_dy[it,i0,jm:jp,km:kp].transpose(),extent=YZE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$\partial \beta_x/\partial y(0,y,z)$")
@@ -1287,7 +1287,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2.
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
 
   plt.imshow(dbx_dz[it,im:ip,jm:jp,k0].transpose(),extent=XYE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$\partial \beta_x/\partial z(x,y,0)$")
@@ -1311,7 +1311,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2.
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
 
   plt.imshow(dbx_dz[it,im:ip,j0,km:kp].transpose(),extent=XZE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$\partial \beta_x/\partial z(x,0,z)$")
@@ -1335,7 +1335,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2.
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
 
   plt.imshow(dbx_dz[it,i0,jm:jp,km:kp].transpose(),extent=YZE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$\partial \beta_x/\partial z(0,y,z)$")
@@ -1366,7 +1366,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2.
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
 
   plt.imshow(dby_dz[it,im:ip,jm:jp,k0].transpose(),extent=XYE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$\partial \beta_y/\partial z(x,y,0)$")
@@ -1390,7 +1390,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2.
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
 
   plt.imshow(dby_dz[it,im:ip,j0,km:kp].transpose(),extent=XZE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$\partial \beta_y/\partial z(x,0,z)$")
@@ -1414,7 +1414,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2.
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
 
   plt.imshow(dby_dz[it,i0,jm:jp,km:kp].transpose(),extent=YZE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$\partial \beta_y/\partial z(0,y,z)$")
@@ -1445,7 +1445,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2.
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
 
   plt.imshow(dby_dx[it,im:ip,jm:jp,k0].transpose(),extent=XYE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$\partial \beta_y/\partial x(x,y,0)$")
@@ -1469,7 +1469,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2.
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
 
   plt.imshow(dby_dx[it,im:ip,j0,km:kp].transpose(),extent=XZE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$\partial \beta_y/\partial x(x,0,z)$")
@@ -1493,7 +1493,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2.
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
 
   plt.imshow(dby_dx[it,i0,jm:jp,km:kp].transpose(),extent=YZE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$\partial \beta_y/\partial x(0,y,z)$")
@@ -1524,7 +1524,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2. 
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
   plt.imshow(dbz_dx[it,im:ip,jm:jp,k0].transpose(),extent=XYE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$\partial \beta_z/\partial x(x,y,0)$")
   plt.xlabel('x [fm]')
@@ -1547,7 +1547,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2. 
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
   plt.imshow(dbz_dx[it,im:ip,j0,km:kp].transpose(),extent=XZE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$\partial \beta_z/\partial x(x,0,z)$")
   plt.xlabel('x [fm]')
@@ -1570,7 +1570,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2. 
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
   plt.imshow(dbz_dx[it,i0,jm:jp,km:kp].transpose(),extent=YZE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$\partial \beta_z/\partial x(0,y,z)$")
   plt.xlabel('y [fm]')
@@ -1600,7 +1600,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2.
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
 
   plt.imshow(dbz_dy[it,im:ip,jm:jp,k0].transpose(),extent=XYE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$\partial \beta_z/\partial y(x,y,0)$")
@@ -1624,7 +1624,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2. 
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
   plt.imshow(dbz_dy[it,im:ip,j0,km:kp].transpose(),extent=XZE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$\partial \beta_z/\partial y(x,0,z)$")
   plt.xlabel('x [fm]')
@@ -1647,7 +1647,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2.
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
   plt.imshow(dbz_dy[it,i0,jm:jp,km:kp].transpose(),extent=YZE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$\partial \beta_z/\partial y(0,y,z)$")
   plt.xlabel('y [fm]')
@@ -1677,7 +1677,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2.
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
 
   plt.imshow(omega_tx[it,im:ip,jm:jp,k0].transpose(),extent=XYE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$\omega_{tx}(x,y,0)$")
@@ -1701,7 +1701,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2. 
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
   plt.imshow(omega_tx[it,im:ip,j0,km:kp].transpose(),extent=XZE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$\omega_{tx}(x,0,z)$")
   plt.xlabel('x [fm]')
@@ -1724,7 +1724,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2.
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
   plt.imshow(omega_tx[it,i0,jm:jp,km:kp].transpose(),extent=YZE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$\omega_{tx}(0,y,z)$")
   plt.xlabel('y [fm]')
@@ -1755,7 +1755,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2.
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
 
   plt.imshow(omega_ty[it,im:ip,jm:jp,k0].transpose(),extent=XYE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$\omega_{ty}(x,y,0)$")
@@ -1779,7 +1779,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2. 
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
   plt.imshow(omega_ty[it,im:ip,j0,km:kp].transpose(),extent=XZE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$\omega_{ty}(x,0,z)$")
   plt.xlabel('x [fm]')
@@ -1802,7 +1802,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2.
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
   plt.imshow(omega_ty[it,i0,jm:jp,km:kp].transpose(),extent=YZE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$\omega_{ty}(0,y,z)$")
   plt.xlabel('y [fm]')
@@ -1832,7 +1832,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2.
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
 
   plt.imshow(omega_tz[it,im:ip,jm:jp,k0].transpose(),extent=XYE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$\omega_{tz}(x,y,0)$")
@@ -1856,7 +1856,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2. 
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
   plt.imshow(omega_tz[it,im:ip,j0,km:kp].transpose(),extent=XZE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$\omega_{tz}(x,0,z)$")
   plt.xlabel('x [fm]')
@@ -1879,7 +1879,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2.
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
   plt.imshow(omega_tz[it,i0,jm:jp,km:kp].transpose(),extent=YZE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$\omega_{tz}(0,y,z)$")
   plt.xlabel('y [fm]')
@@ -1909,7 +1909,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2.
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
 
   plt.imshow(omega_yz[it,im:ip,jm:jp,k0].transpose(),extent=XYE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$\omega_{yz}(x,y,0)$")
@@ -1933,7 +1933,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2. 
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
   plt.imshow(omega_yz[it,im:ip,j0,km:kp].transpose(),extent=XZE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$\omega_{yz}(x,0,z)$")
   plt.xlabel('x [fm]')
@@ -1956,7 +1956,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2.
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
   plt.imshow(omega_yz[it,i0,jm:jp,km:kp].transpose(),extent=YZE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$\omega_{yz}(0,y,z)$")
   plt.xlabel('y [fm]')
@@ -1987,7 +1987,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2.
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
 
   plt.imshow(omega_zx[it,im:ip,jm:jp,k0].transpose(),extent=XYE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$\omega_{zx}(x,y,0)$")
@@ -2011,7 +2011,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2. 
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
   plt.imshow(omega_zx[it,im:ip,j0,km:kp].transpose(),extent=XZE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$\omega_{zx}(x,0,z)$")
   plt.xlabel('x [fm]')
@@ -2034,7 +2034,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2.
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
   plt.imshow(omega_zx[it,i0,jm:jp,km:kp].transpose(),extent=YZE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$\omega_{zx}(0,y,z)$")
   plt.xlabel('y [fm]')
@@ -2065,7 +2065,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2.
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
 
   plt.imshow(omega_xy[it,im:ip,jm:jp,k0].transpose(),extent=XYE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$\omega_{xy}(x,y,0)$")
@@ -2089,7 +2089,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2. 
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
   plt.imshow(omega_xy[it,im:ip,j0,km:kp].transpose(),extent=XZE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$\omega_{xy}(x,0,z)$")
   plt.xlabel('x [fm]')
@@ -2112,7 +2112,7 @@ for it in range(len(tt)):
   else:
       cmap_tmp='gnuplot'
       vcenter_tmp=(vmax_tmp+vmin_tmp)/2.
-  norm = DivergingNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
+  norm = TwoSlopeNorm(vmin=vmin_tmp, vcenter=vcenter_tmp, vmax=vmax_tmp)
   plt.imshow(omega_xy[it,i0,jm:jp,km:kp].transpose(),extent=YZE,origin='lower',cmap=cmap_tmp,aspect='equal',norm=norm,interpolation=None)
   plt.title(r"$\omega_{xy}(0,y,z)$")
   plt.xlabel('y [fm]')
