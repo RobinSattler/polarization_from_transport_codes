@@ -23,7 +23,7 @@ from scipy import interpolate
 """
 
 # PARAMETERS
-eos_type = 2 #1 = Official SMASH HRG (e,nB,nQ), 2 = UrMQD
+eos_type = 1 #1 = Official SMASH HRG (e,nB,nQ), 2 = UrMQD
 
 eos_dir = "EOS_HG_UrQMD"
 
