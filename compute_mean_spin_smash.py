@@ -89,8 +89,13 @@ except:
     sys.exit(2)
 
 
-#opening output file
+#opening output file & writing header
 outfile=open(outfilename,"w")
+ss = "{:>7}"
+sS = "{:>15}"
+outfile.write("#" + "{:>6}".format("t") + sp + ss.format("x") + sp + ss.format("y") + sp + ss.format("z") + sp + ss.format("pt")
+   + "   " + ss.format("rapidity") + sp + sS.format("Sx_lrf") + sp + sS.format("Sy_lrf") + sp + sS.format("Sz_lrf") + "\n")
+
 
 count_reads=0
 count_lines=0
@@ -192,7 +197,7 @@ while(True):
     for a in range(index):
         outfile.write('{:7.3f}'.format(datas[a,0])+sp+'{:7.3f}'.format(datas[a,1])+sp+'{:7.3f}'.format(datas[a,2])+sp+'{:7.3f}'.format(datas[a,3])+sp+'{:7.3f}'.format(datas[a,4])+sp+'{:7.3f}'.format(datas[a,5]))
         for q in range(6,9):
-            outfile.write(sp+'{:12.8e}'.format(datas[a,q]))
+            outfile.write(sp+'{: 12.8e}'.format(datas[a,q]))
         outfile.write("\n")
 
     if(count_reads < nlines):
