@@ -95,6 +95,8 @@ ss = "{:>7}"
 sS = "{:>15}"
 outfile.write("#" + "{:>6}".format("t") + sp + ss.format("x") + sp + ss.format("y") + sp + ss.format("z") + sp + ss.format("pt")
    + "   " + ss.format("rapidity") + sp + sS.format("Sx_lrf") + sp + sS.format("Sy_lrf") + sp + sS.format("Sz_lrf") + "\n")
+outfile.write("#" + "{:>6}".format("fm") + sp + ss.format("fm") + sp + ss.format("fm") + sp + ss.format("fm") + sp + ss.format("GeV")
+              + sp + ss.format("none") + sp + sS.format("GeV") + sp + sS.format("GeV") + sp + sS.format("GeV") + "\n")
 
 
 count_reads=0
