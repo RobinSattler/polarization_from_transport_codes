@@ -18,6 +18,13 @@ y_of_interest=[0.]
 time_min=0.00
 time_max=25.00
 limval=1.0 #maximum value in cbar
+# colors: (dark blue), (light blue), (yellow), (red)
+threshold=0.0000001
+#bounds=np.linspace(-1.0,1.0,101) # needed for discrete colorbar
+ticks=np.linspace(-1,1,11)
+colors=np.array([(0,10,255), (0,249,255), (255,255,0), (255,0,0)])/255
+cmap=matplotlib.colors.LinearSegmentedColormap.from_list("my_gradient", ((0.000, colors[0]), (0.5-threshold/2, colors[1]), (0.500, "white"), (0.5+threshold/2, colors[2]), (1.000, colors[3])), N=2001)#20001)
+#norm=matplotlib.colors.BoundaryNorm(bounds, cmap.N) # needed for discrete colorbar
 #vorticity_cmap = matplotlib.cm.jet
 vorticity_cmap = matplotlib.cm.gnuplot
 
@@ -123,15 +130,16 @@ for it in range(len(tt)):
       #topval=max(abs(maxvalue),abs(minvalue))
       plt.subplot(121)
       #plt.imshow(omega_zx[it,:,ik,:],extent=[zz[0]-dz/2, zz[-1]+dz/2,xx[0]-dx/2,xx[-1]+dx/2], origin='lower',cmap='coolwarm',vmin=-.5,vmax=.5,aspect='equal',interpolation=None)
-      plt.imshow(omega_zx[it,:,ik,:],extent=[zz[0]-dz/2, zz[-1]+dz/2,xx[0]-dx/2,xx[-1]+dx/2], origin='lower',cmap='coolwarm',vmin=-limval,vmax=limval,aspect='equal',interpolation='bilinear')
-      #plt.imshow(omega_zx[it,:,ik,:],extent=[zz[0]-dz/2, zz[-1]+dz/2,xx[0]-dx/2,xx[-1]+dx/2], origin='lower',cmap='coolwarm',vmin=-limval,vmax=limval,aspect='equal',interpolation='None')
+      #plt.imshow(omega_zx[it,:,ik,:],extent=[zz[0]-dz/2, zz[-1]+dz/2,xx[0]-dx/2,xx[-1]+dx/2], origin='lower',cmap=cmap,vmin=-limval,vmax=limval,aspect='equal',interpolation='bilinear')
+      plt.imshow(omega_zx[it,:,ik,:],extent=[zz[0]-dz/2, zz[-1]+dz/2,xx[0]-dx/2,xx[-1]+dx/2], origin='lower',cmap=cmap,vmin=-limval,vmax=limval,aspect='equal',interpolation='None')
       plt.title(r"$\omega_{zx}$")
       plt.xlabel('z [fm]')
       plt.ylabel('x [fm]')
       ax=plt.gca()
       divider = make_axes_locatable(ax)
       cax = divider.append_axes("right", size="5%", pad=0.05)
-      plt.colorbar(label=r'$\omega_{zx}$',cax=cax,format="%6.3f")
+      #plt.colorbar(matplotlib.cm.ScalarMappable(norm=norm,cmap=cmap),label=r'$\omega_{zx}$',cax=cax,format="%3.1f",ticks=ticks) # needed for discrete colorbar (instead of the following line)
+      plt.colorbar(label=r'$\omega_{zx}$',cax=cax,format="%3.1f",ticks=ticks)
 
       plt.subplot(122)
 #      masked_array = np.ma.array(temp,mask=(temp==0))
