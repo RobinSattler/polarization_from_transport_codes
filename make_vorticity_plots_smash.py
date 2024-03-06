@@ -15,8 +15,8 @@ import gzip
 
 # we make 2D x-z plots at y=y_of_interest, for t_min<=t<=t_max 
 y_of_interest=[0.]
-time_min=15.00
-time_max=15.00
+time_min=0.00
+time_max=25.00
 limval=1.0 #maximum value in cbar
 #vorticity_cmap = matplotlib.cm.jet
 vorticity_cmap = matplotlib.cm.gnuplot
@@ -63,7 +63,7 @@ dz=zz[1]-zz[0]
 
 ny=len(yy)
 if(ny<2):
-  zz_selected.append(0)
+  yy_selected.append(0)
   ftim.append(True)
 else:
   dy=yy[1]-yy[0]
@@ -145,11 +145,10 @@ for it in range(len(tt)):
       ax=plt.gca()
       divider = make_axes_locatable(ax)
       cax = divider.append_axes("right", size="5%", pad=0.05)
-      plt.colorbar(label="T [MeV]",cax=cax,format="%6.3f")
+      plt.colorbar(label="T [MeV]",cax=cax,format="%5.0f")
 
 
       plt.tight_layout()
 
       plt.savefig(outdir+"/"+"t_"+'{:05.2f}'.format(tt[it])+".png",dpi=200,pad_inches=0.)
-      plt.close('all')
-    
+      plt.close('all')    
