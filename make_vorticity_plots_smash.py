@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# version 0.1.1 08/01/2022
+# version 0.1.2 03/06/2024
 
 import fileinput
 import math
